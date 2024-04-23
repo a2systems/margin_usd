@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="margin_usd_sale_order_tree" model="ir.ui.view">
+        <field name="name">margin_usd.sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+	<field name="arch" type="xml">
+		<field name="state" position="after">
+			<field name="margin_usd" optional="hide" />
+		</field>
+        </field>
+</record>
+
+    <record id="margin_margin_usd_sale_order_tree" model="ir.ui.view">
+        <field name="name">margin.margin_usd.sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form" />
+	<field name="arch" type="xml">
+	        <field name="margin" position="after">
+			<field name="purchase_price_usd" optional="hide" />
+			<field name="margin_usd" optional="hide" />
+		</field>
+	</field>
+</record>
+
+    <record model="ir.ui.view" id="margin_usd_sale_margin_sale_order">
+        <field name="name">sale.order.margin_usd.margin.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_totals']" position="after">
+                <label for="margin_usd" groups="base.group_user"/>
+                <div class="text-nowrap" groups="base.group_user">
+                    <field name="margin_usd" class="oe_inline"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
